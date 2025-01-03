@@ -2,8 +2,64 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center bg-black">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-    <h1>Sai do meu pé</h1>
+<div class="container py-4">
+    <!-- Cabeçalho -->
+    <header class="text-center mb-4">
+        <h1>Bem-vindo ao Meu Layout</h1>
+        <p class="text-muted">Informações e imagens organizadas com Bootstrap</p>
+    </header>
+
+    <!-- Seção principal -->
+    <div class="row g-4">
+        <!-- Coluna de informações -->
+        <div class="col-md-6">
+            <h2>Informações</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ac eros at nisi efficitur cursus ut non nisi. Vivamus sed purus nec metus fringilla euismod.</p>
+            <ul>
+                <li>Informação 1</li>
+                <li>Informação 2</li>
+                <li>Informação 3</li>
+            </ul>
+        </div>
+
+        <!-- Coluna de imagens -->
+        <div class="col-md-6">
+            <h2>Imagens</h2>
+            <div class="row g-2">
+                <div class="col-6">
+                    <img src="https://via.placeholder.com/150" alt="Imagem 1" class="img-fluid rounded">
+                </div>
+                <div class="col-6">
+                    <img src="https://via.placeholder.com/150" alt="Imagem 2" class="img-fluid rounded">
+                </div>
+                <div class="col-6">
+                    <img src="https://via.placeholder.com/150" alt="Imagem 3" class="img-fluid rounded">
+                </div>
+                <div class="col-6">
+                    <img src="https://via.placeholder.com/150" alt="Imagem 4" class="img-fluid rounded">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Seção adicional -->
+    <div class="row g-4 mt-4">
+        <div class="col-md-4">
+            <h3>Seção 1</h3>
+            <p>Descrição ou detalhes desta seção.</p>
+        </div>
+        <div class="col-md-4">
+            <h3>Seção 2</h3>
+            <p>Descrição ou detalhes desta seção.</p>
+        </div>
+        <div class="col-md-4">
+            <h3>Seção 3</h3>
+            <p>Descrição ou detalhes desta seção.</p>
+        </div>
+    </div>
+
+    <!-- Rodapé -->
+    <footer class="text-center mt-4">
+        <p>&copy; 2025 - Seu Nome. Todos os direitos reservados.</p>
+    </footer>
 </div>
