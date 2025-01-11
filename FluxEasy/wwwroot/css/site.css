@@ -19,5 +19,31 @@ html {
 
 body {
 
-  margin-bottom: 60px;
+  margin-bottom: 0px;
 }
+
+.header {
+    position: relative;
+    height: 400px; /* Define a altura da área do header */
+    overflow: hidden; /* Garante que a imagem não ultrapasse os limites */
+}
+  
+    .header::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url('https://intercol.ind.br/assets/images/blog/grid/1.jpg') no-repeat center center;
+        background-size: cover; /* Faz a imagem preencher o header */
+        filter: brightness(50%); /* Escurece a imagem para destacar o texto */
+        z-index: -1; /* Coloca a imagem atrás do conteúdo */
+        border-radius: 12px;
+    }
+
+    .header h1,
+    .header h4 {
+        color: white; /* Garante que o texto fique visível sobre a imagem */
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Adiciona uma sombra ao texto */
+    }
