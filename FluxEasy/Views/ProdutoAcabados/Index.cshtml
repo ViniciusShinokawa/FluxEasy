@@ -6,9 +6,11 @@
 
 <h1>Producto Acabado</h1>
 
-<p>
-    <a asp-action="Create">Criar Novo</a>
-</p>
+<div class="text-end">
+    <a asp-action="Create" class="btn btn-primary">Criar Novo</a>
+</div>
+
+
 <table class="table">
     <thead>
         <tr>
@@ -60,11 +62,11 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Cliente)
             </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ProdutoId">Editar</a> |
-                <a asp-action="Details" asp-route-id="@item.ProdutoId">Detalhes</a> |
-                <a asp-action="Delete" asp-route-id="@item.ProdutoId">Deletar</a>
-            </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ProdutoId" class="btn btn-warning">Editar</a>
+                    <a asp-action="Details" asp-route-id="@item.ProdutoId" class="btn btn-info">Detalhes</a>
+                    <a asp-action="Delete" asp-route-id="@item.ProdutoId" class="btn btn-danger">Deletar</a>
+                </td>
         </tr>
 }
     </tbody>
