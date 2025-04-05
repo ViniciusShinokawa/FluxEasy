@@ -12,6 +12,7 @@ namespace FluxEasy.Data
 
         }
         //caso precise apagar 
+        public DbSet<EstoquePVA> EstoquePVA { get; set; }
         public DbSet<ProdutoAcabado> ProdutoAcabado { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -19,5 +20,8 @@ namespace FluxEasy.Data
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<ProdutoAcabado>().ToTable("ProdutoAcabado");
         }
+        //caso precise apagar
+
     }
+
 }
