@@ -4,10 +4,10 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Producto Acabado</h1>
+<h1 class="mb-4 text-center">📦 Estoque Hotmelt</h1>
 
-<div class="text-end mb-2">
-    <a asp-action="Create" class="btn btn-primary">Criar Novo</a>
+<div class="text-end mb-3">
+    <a asp-action="Create" class="btn btn-primary btn-lg">➕ Criar Novo</a>
 </div>
 
 
@@ -40,9 +40,9 @@
                 <td>@Html.DisplayFor(modelItem => item.Embalagem)</td>              
                 <td>@Html.DisplayFor(modelItem => item.Cliente)</td>              
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.ProdutoId" class="btn btn-warning btn-sm">Editar</a>
-                    <a asp-action="Details" asp-route-id="@item.ProdutoId" class="btn btn-info btn-sm">Detalhes</a>
-                    <a asp-action="Delete" asp-route-id="@item.ProdutoId" class="btn btn-danger btn-sm">Deletar</a>
+                    <a asp-action="Edit" asp-route-id="@item.ProdutoId" class="btn btn-warning btn-sm">✏️Editar</a>
+                    <a asp-action="Details" asp-route-id="@item.ProdutoId" class="btn btn-info btn-sm">🔍Detalhes</a>
+                    <a asp-action="Delete" asp-route-id="@item.ProdutoId" class="btn btn-danger btn-sm">🗑️Deletar</a>
                 </td>
             </tr>
         }

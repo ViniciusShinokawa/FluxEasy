@@ -12,6 +12,5 @@
         public string ? Galoes { get; set; }
         public string? Bc10 { get; set; }
         public string? Bc50 { get; set; }
-
     }
 }
