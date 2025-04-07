@@ -1,0 +1,76 @@
+﻿@model FluxEasy.Entities.EstoquePVA
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Deletar</h1>
+
+<div>
+    <h4>EstoquePVA</h4>
+    <hr />
+    <dl class="row">
+        <!--
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IdProduto)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IdProduto)
+        </dd>
+        -->
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Entrada)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Entrada)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Produtos)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Produtos)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Local)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Local)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Lote)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Lote)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Frascos)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Frascos)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Galoes)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Galoes)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Bc10)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Bc10)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Bc50)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Bc50)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Deletar" class="btn btn-danger" /> 
+        <a asp-action="Index" class="btn btn-secondary">Voltar para lista</a>
+    </form>
+</div>

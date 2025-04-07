@@ -1,0 +1,57 @@
+﻿@model IEnumerable<FluxEasy.Entities.EstoquePVA>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="mb-4 text-center">📦 Estoque PVA</h1>
+
+<div class="text-end mb-3">
+    <a asp-action="Create" class="btn btn-primary btn-lg">➕ Criar Novo</a>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-striped table-hover align-middle">
+        <thead class="table-dark">
+            <tr>
+                <!--
+                <th>@Html.DisplayNameFor(model => model.IdProduto)</th>
+                --> 
+                <th>@Html.DisplayNameFor(model => model.Entrada)</th>
+                <th>@Html.DisplayNameFor(model => model.Produtos)</th>
+                <th>@Html.DisplayNameFor(model => model.Local)</th>
+                <th>@Html.DisplayNameFor(model => model.Lote)</th>
+                <th>@Html.DisplayNameFor(model => model.Frascos)</th>
+                <th>@Html.DisplayNameFor(model => model.Galoes)</th>
+                <th>@Html.DisplayNameFor(model => model.Bc10)</th>
+                <th>@Html.DisplayNameFor(model => model.Bc50)</th>
+                <th class="text-center">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <!--
+                    <td>@Html.DisplayFor(modelItem => item.IdProduto)</td>
+                    -->
+                    <td>@Html.DisplayFor(modelItem => item.Entrada)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Produtos)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Local)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Lote)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Frascos)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Galoes)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Bc10)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Bc50)</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">✏️Editar</a>
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm">🔍Detalhes</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">🗑️Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+

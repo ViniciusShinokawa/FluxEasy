@@ -4,6 +4,7 @@ using FluxEasy.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FluxEasy.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250405010825_ProdutoPva")]
+    partial class ProdutoPva
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -36,9 +39,6 @@ namespace FluxEasy.Data.Migrations
                     b.Property<string>("Bc50")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Entrada")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Frascos")
                         .HasColumnType("nvarchar(max)");
 
@@ -54,8 +54,8 @@ namespace FluxEasy.Data.Migrations
                     b.Property<string>("Lote")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Produtos")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Produtos")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
