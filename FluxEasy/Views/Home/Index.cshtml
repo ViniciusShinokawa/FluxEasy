@@ -1,126 +1,454 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-<div class="container py-4">
-    <header class="header mb-4">
-        <!-- Conteúdo -->
-        <div class="container h-100 d-flex flex-column justify-content-center align-items-center text-center">
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewData["Title"]</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700|Roboto:400,500,700&display=swap" rel="stylesheet">
+    <style type="text/css">
+        /* RESET e Forçar largura total */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow-x: hidden;
+        }
+
+        .container, .container-fluid {
+            width: 100% !important;
+            max-width: 100% !important;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #fff;
+            color: #34495e;
+        }
+
+        /* ================================
+               SEÇÃO HERO – Tela inteira com fundo que faz slideshow
+               ================================ */
+        .hero {
+            position: relative;
+            height: 100vh;
+            /* A remoção de margens garante que a HERO inicie no topo */
+            margin: 0;
+            overflow: hidden;
+        }
+        /* Essa camada realiza a transição entre imagens */
+        #hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            z-index: 0;
+            transition: opacity 1s ease-in-out;
+            opacity: 1;
+        }
+            /* Overlay para escurecer a imagem */
+            #hero-bg::after {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.5);
+                z-index: 1;
+            }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 100%;
+            /* Sem paddings laterais para eliminar espaços em branco */
+            padding: 0;
+        }
+
+        .hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 80px;
+            font-weight: 900;
+            color: #fff;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.7);
+            animation: fadeInDown 1s ease-out;
+            margin-bottom: 20px;
+            text-align: left;
+            padding-left: 5%; /* Se desejar recuo */
+        }
+
+        .hero h4 {
+            font-family: 'Roboto', sans-serif;
+            font-size: 32px;
+            color: #fff;
+            border-right: 2px solid #fff;
+            white-space: nowrap;
+            overflow: hidden;
+            text-align: left;
+            padding-left: 5%;
+        }
+
+        /* ================================
+               SEÇÃO 2: Cards de Produtos (Container Cinza mais escuro)
+               ================================ */
+        .cards-section {
+            background-color: #333;
+            padding: 40px 0;
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            width: 100%;
+            padding: 0 20px;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeIn 1s ease-out;
+        }
+
+            .card:hover {
+                transform: scale(1.05);
+                box-shadow: 0 8px 12px rgba(0,0,0,0.2);
+            }
+
+            .card img {
+                width: 100%;
+                display: block;
+            }
+
+        .card-body {
+            padding: 15px;
+            text-align: center;
+        }
+
+        .card-title {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .card-text {
+            font-size: 16px;
+        }
+
+        /* ================================
+               SEÇÃO 3: Info Section com Fundo Fixo
+               ================================ */
+        .info-section {
+            position: relative;
+            background: url('https://intercol.ind.br/assets/images/blog/grid/1.jpg') no-repeat center center;
+            background-attachment: fixed;
+            background-size: cover;
+            padding: 60px 0;
+            color: #fff;
+        }
+
+            .info-section::after {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0, 0, 0, 0.6);
+                z-index: 0;
+            }
+
+        .info-container {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            max-width: 1140px;
+            margin: auto;
+            padding: 0 20px;
+        }
+
+        .info-box {
+            background: rgba(255,255,255,0.9);
+            color: #34495e;
+            padding: 20px;
+            border-radius: 10px;
+            flex: 1 1 300px;
+            transition: transform 0.3s ease;
+        }
+
+            .info-box:hover {
+                transform: translateY(-5px);
+            }
+
+            .info-box h3, .info-box h4 {
+                text-align: center;
+                margin-bottom: 15px;
+            }
+
+            .info-box p, .info-box ul {
+                font-size: 16px;
+                text-align: justify;
+            }
+
+            .info-box ul {
+                list-style: disc;
+                padding-left: 20px;
+            }
+
+        /* ================================
+               SEÇÃO 4: Cards Adicionais (Container Cinza)
+               ================================ */
+        .additional-section {
+            background-color: #333;
+            padding: 40px 0;
+        }
+
+            .additional-section h2 {
+                color: #fff;
+                font-family: 'Montserrat', sans-serif;
+                font-size: 32px;
+                text-align: center;
+                margin-bottom: 20px;
+                padding: 0 20px;
+            }
+
+        .additional-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            max-width: 1140px;
+            margin: auto;
+            padding: 0 20px;
+        }
+
+        .additional-box {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            flex: 1 1 300px;
+            transition: transform 0.3s ease;
+        }
+
+            .additional-box:hover {
+                transform: translateY(-5px);
+            }
+
+            .additional-box h3 {
+                text-align: center;
+                margin-bottom: 15px;
+            }
+
+            .additional-box p {
+                font-size: 16px;
+                text-align: justify;
+            }
+
+        /* =============================
+               Footer
+               ============================= */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #f7f7f7;
+            animation: fadeIn 1s ease-out;
+        }
+
+        /* =============================
+               Keyframes (Escapados para Razor)
+               ============================= */
+        @@keyframes fadeInDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @@keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @@media (max-width: 768px) {
+            .hero h1 {
+                font-size: 50px;
+            }
+
+            .hero h4 {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body style="background-color: #6C757D">
+    <!-- HERO Section com fundo slideshow -->
+    <section class="hero">
+        <!-- Elemento para o fundo que vai fazer o slideshow -->
+        <div id="hero-bg"></div>
+        <div class="hero-content">
             <h1>FLUX EASY</h1>
-            <h4>
-                Simplificando o controle, maximizando resultados.<br />
-                Veja como a gestão de estoque pode ser mais eficiente e descomplicada!
-            </h4>
+            <h4 id="subtitle"></h4>
         </div>
-    </header>
-</div>
+    </section>
 
-<!--Teste-->
- 
-    <!-- Seção principal -->
-<div class="row justify-content-center g-4" style="display: flex; justify-content: center; align-items: stretch; gap: 20px;">
-    <!-- Coluna de informações -->
-    <div class="col-md-5" style="background-color: #f5f5f5; padding: 20px; border-radius: 10px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); border: 1px solid #ddd;">
-        <h4 style="font-family: 'Montserrat', sans-serif; font-size: 24px; font-weight: bold; color: #2c3e50; text-align: center; margin-bottom: 15px;">
-            Desenvolvido especialmente para otimizar o controle de estoque de produtos acabados na Intercol.
-        </h4>
-        <p style="font-family: 'Roboto', sans-serif; font-size: 16px; line-height: 1.5; color: #34495e; text-align: justify;">
-            Moderno e intuitivo, ele foi projetado para atender às necessidades específicas da nossa empresa, garantindo eficiência, agilidade e precisão na gestão de informações.
-        </p>
-    </div>
-
-    <!-- Coluna de funcionalidades -->
-    <div class="col-md-5" style="background-color: #f5f5f5; padding: 20px; border-radius: 10px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); border: 1px solid #ddd;">
-        <h3 style="font-family: 'Montserrat', sans-serif; font-size: 24px; font-weight: bold; color: #2c3e50; text-align: center; margin-bottom: 15px;">
-            Funcionalidades Principais
-        </h3>
-        <ul style="list-style-type: disc; padding-left: 20px; color: #34495e; font-family: 'Roboto', sans-serif; font-size: 16px; line-height: 1.5;">
-            <li style="margin-bottom: 5px;">Cadastro e Gerenciamento de Produtos</li>
-            <li style="margin-bottom: 5px;">Segurança e Controle</li>
-        </ul>
-        <hr style="border: none; height: 1px; background-color: #ddd;" />
-    </div>
-</div>
-
-
-        <!-- Coluna de imagens 
-        <div class="col-md-6">
-            <h2>Produtos em gestão</h2>
-            <div class="row g-2">
-                <div class="col-6">
-                    <img src="https://intercol.ind.br/assets/images/blog/grid/1.jpg" alt="Imagem 1" class="img-fluid rounded">
+    <!-- Seção 2: Cards de Produtos -->
+    <section class="cards-section">
+        <div class="cards-container">
+            <div class="card">
+                <img src="https://intercol.ind.br/assets/images/blog/grid/1.jpg" alt="Granulado">
+                <div class="card-body">
+                    <h5 class="card-title">Granulado</h5>
+                    <p class="card-text">Hot melt granulado<br> Linha Thermocol.</p>
                 </div>
-                <div class="col-6">
-                    <img src="https://intercol.ind.br/assets/images/blog/grid/3.jpg" alt="Imagem 2" class="img-fluid rounded">
+            </div>
+            <div class="card">
+                <img src="https://intercol.ind.br/assets/images/blog/grid/3.jpg" alt="Sachê">
+                <div class="card-body">
+                    <h5 class="card-title">Sachê</h5>
+                    <p class="card-text">Hot melt PSA<br> Linha Thermocol.</p>
                 </div>
-                <div class="col-6">
-                    <img src="https://intercol.ind.br/assets/images/blog/grid/4.jpg" alt="Imagem 3" class="img-fluid rounded">
+            </div>
+            <div class="card">
+                <img src="https://intercol.ind.br/assets/images/blog/grid/4.jpg" alt="Bastão">
+                <div class="card-body">
+                    <h5 class="card-title">Bastão</h5>
+                    <p class="card-text">Hot melt bastão<br> Linha Thermocol.</p>
                 </div>
-                <div class="col-6">
-                    <img src="https://intercol.ind.br/assets/images/blog/grid/5.jpg" alt="Imagem 4" class="img-fluid rounded">
+            </div>
+            <div class="card">
+                <img src="https://intercol.ind.br/assets/images/blog/grid/5.jpg" alt="Cola fria">
+                <div class="card-body">
+                    <h5 class="card-title">Cola fria</h5>
+                    <p class="card-text">PVA, VAE e acrílica,<br> Linha Pevecol</p>
                 </div>
             </div>
         </div>
-    </div>-->
+    </section>
 
-    <!--Descrição do produto-->
-
-<div class="container-fluid d-flex flex-wrap justify-content-center" style="margin-top: 40px; gap: 20px;">
-    <div class="card" style="width: 18rem; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); border-radius: 10px; overflow: hidden;">
-        <img src="https://intercol.ind.br/assets/images/blog/grid/1.jpg" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title" style="text-align: center;">Granulado</h5>
-            <p class="card-text" style="text-align: center;">Hot melt granulado <br /> Linha Thermocol.</p>
+    <!-- Seção 3: Info Section com Fundo Fixo -->
+    <section class="info-section">
+        <div class="info-container">
+            <div class="info-box">
+                <h4>Desenvolvido especialmente para otimizar o controle de estoque de produtos acabados na Intercol.</h4>
+                <p>Moderno e intuitivo, ele foi projetado para atender às necessidades específicas da nossa empresa, garantindo eficiência, agilidade e precisão na gestão de informações.</p>
+            </div>
+            <div class="info-box">
+                <h3>Funcionalidades Principais</h3>
+                <ul>
+                    <li>Cadastro e Gerenciamento de Produtos</li>
+                    <li>Segurança e Controle</li>
+                </ul>
+            </div>
         </div>
-    </div>
-    <div class="card" style="width: 18rem; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); border-radius: 10px; overflow: hidden;">
-        <img src="https://intercol.ind.br/assets/images/blog/grid/3.jpg" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title" style="text-align: center;">Sachê</h5>
-            <p class="card-text" style="text-align: center;">Hot melt PSA <br /> Linha Thermocol.</p>
+    </section>
+
+    <!-- Seção 4: Cards Adicionais com o título "Aonde nós estamos?" -->
+    <section class="additional-section">
+        <h2>Aonde nós estamos?</h2>
+        <div class="additional-container">
+            <div class="additional-box">
+                <h3>Comercial</h3>
+                <p>Consulta de estoque em tempo real, para maior eficiência.</p>
+            </div>
+            <div class="additional-box">
+                <h3>Inspeção</h3>
+                <p>Sistema intuitivo, para entrada de produtos acabados.</p>
+            </div>
         </div>
-    </div>
-    <div class="card" style="width: 18rem; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); border-radius: 10px; overflow: hidden;">
-        <img src="https://intercol.ind.br/assets/images/blog/grid/4.jpg" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title" style="text-align: center;">Bastão</h5>
-            <p class="card-text" style="text-align: center;">Hot melt bastão <br /> Linha Thermocol.</p>
-        </div>
-    </div>
-    <div class="card" style="width: 18rem; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); border-radius: 10px; overflow: hidden;">
-        <img src="https://intercol.ind.br/assets/images/blog/grid/5.jpg" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title" style="text-align: center;">Cola fria</h5>
-            <p class="card-text" style="text-align: center;">PVA, VAE e acrílica,<br /> Linha Pevecol</p>
-        </div>
-    </div>
-</div>
+    </section>
 
-    <!---->
-
-    <!-- Seção adicional -->
-<div class="row g-4 mt-4 justify-content-center d-flex" style="gap: 20px;">
-    <!-- Comercial -->
-    <div class="col-md-4" style="background-color: #f5f5f5; padding: 20px; border-radius: 10px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); border: 1px solid #ddd;">
-        <h3 style="font-family: 'Montserrat', sans-serif; font-size: 24px; font-weight: bold; color: #2c3e50; text-align: center; margin-bottom: 15px;">
-            Comercial
-        </h3>
-        <p style="font-family: 'Roboto', sans-serif; font-size: 16px; line-height: 1.5; color: #34495e; text-align: justify;">
-            Consulta de estoque em tempo real, para maior eficiência
-        </p>
-    </div>
-
-    <!-- Inspeção -->
-    <div class="col-md-4" style="background-color: #f5f5f5; padding: 20px; border-radius: 10px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); border: 1px solid #ddd;">
-        <h3 style="font-family: 'Montserrat', sans-serif; font-size: 24px; font-weight: bold; color: #2c3e50; text-align: center; margin-bottom: 15px;">
-            Inspeção
-        </h3>
-        <p style="font-family: 'Roboto', sans-serif; font-size: 16px; line-height: 1.5; color: #34495e; text-align: justify;">
-            Sistema intuitivo, para entrada de produtos acabados
-        </p>
-    </div>
-</div>
-
-    <!-- Rodapé -->
-    <footer class="text-center mt-4">
+    <!-- Footer -->
+    <footer>
         <p>&copy; 2025 - Intercol. Todos os direitos reservados.</p>
     </footer>
+
+    <!-- Script: Efeito Typewriter para o Subtítulo e Slideshow do Fundo -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+          // Efeito Typewriter para o subtítulo:
+          const subtitleEl = document.getElementById("subtitle");
+          const phrases = [
+            "Simplificando o controle",
+            "Maximizando resultados",
+            "Veja como a gestão de estoque pode ser mais eficiente e descomplicada!"
+          ];
+          let phraseIndex = 0;
+          let letterIndex = 0;
+          let isDeleting = false;
+
+          function type() {
+            const currentPhrase = phrases[phraseIndex];
+            if (!isDeleting) {
+              subtitleEl.textContent = currentPhrase.substring(0, letterIndex + 1);
+              letterIndex++;
+              if(letterIndex === currentPhrase.length) {
+                setTimeout(() => { isDeleting = true; type(); }, 2000);
+                return;
+              }
+            } else {
+              subtitleEl.textContent = currentPhrase.substring(0, letterIndex - 1);
+              letterIndex--;
+              if(letterIndex === 0) {
+                isDeleting = false;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+              }
+            }
+            setTimeout(type, isDeleting ? 50 : 100);
+          }
+          type();
+
+          // Slideshow para o fundo da HERO usando o elemento #hero-bg:
+          const heroBg = document.getElementById("hero-bg");
+          const bgImages = [
+            'url("https://intercol.ind.br/assets/images/blog/grid/5.jpg")',
+            'url("https://intercol.ind.br/assets/images/blog/grid/4.jpg")',
+            'url("https://intercol.ind.br/assets/images/blog/grid/3.jpg")',
+            'url("https://intercol.ind.br/assets/images/blog/grid/1.jpg")'
+          ];
+          let currentBg = 0;
+          // Inicializa com a primeira imagem:
+          heroBg.style.backgroundImage = bgImages[currentBg];
+
+          setInterval(() => {
+            heroBg.style.opacity = 0;
+            setTimeout(() => {
+              currentBg = (currentBg + 1) % bgImages.length;
+              heroBg.style.backgroundImage = bgImages[currentBg];
+              heroBg.style.opacity = 1;
+            }, 500); // 1 segundo de transição
+          }, 5000); // troca a cada 5 segundos
+        });
+    </script>
+</body>
+</html>
