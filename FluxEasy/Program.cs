@@ -36,7 +36,7 @@ namespace FluxEasy
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
+            //para usar sertificado https descomentar app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();
