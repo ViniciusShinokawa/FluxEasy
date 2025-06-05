@@ -10,7 +10,7 @@ Sistema de controle de estoque de adesivos desenvolvido para a empresa **Interco
 - [.NET 8 / ASP.NET Core](https://dotnet.microsoft.com/)
 - Razor Pages (View Engine)
 - ASP.NET Identity (autenticação e controle de usuários)
-- MySQL (banco de dados relacional)
+- SQL SERVER (banco de dados relacional)
 - C#
 - HTML/CSS
 
@@ -91,7 +91,7 @@ FluxEasy/
 ## 📌 Requisitos
 
 - [.NET SDK 8+](https://dotnet.microsoft.com/download)
-- MySQL Server
+- SQL Server
 - Visual Studio ou VS Code com extensões C#
 
 ---
