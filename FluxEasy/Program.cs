@@ -9,6 +9,8 @@ namespace FluxEasy
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            builder.WebHost.UseUrls("http://0.0.0.0:5000");
+          
 
             // Adicione serviços ao contêiner.
 
@@ -38,7 +40,7 @@ namespace FluxEasy
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
+            //para usar sertificado https descomentar app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();
