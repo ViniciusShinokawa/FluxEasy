@@ -10,12 +10,16 @@ namespace FluxEasy
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
+            // Adicione serviços ao contêiner.
+
+            //Faz conexão com o banco de dados usando o Entity Framework Core e a identidade do ASP.NET Core.
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(connectionString));
+
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
+            //Esse trecho de código configura a autenticação e o gerenciamento de identidade em uma aplicação ASP.NET Core.
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             builder.Services.AddControllersWithViews();

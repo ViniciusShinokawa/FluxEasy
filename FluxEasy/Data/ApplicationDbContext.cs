@@ -11,7 +11,9 @@ namespace FluxEasy.Data
         {
 
         }
-        //caso precise apagar 
+        //caso precise apagar
+        //Essas linhas de código fazem parte de um DbContext no
+        //Entity Framework Core e servem para mapear as tabelas do banco de dados dentro da aplicação ASP.NET Core.
         public DbSet<EstoquePVA> EstoquePVA { get; set; }
         public DbSet<ProdutoAcabado> ProdutoAcabado { get; set; }
 

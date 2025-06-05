@@ -6,6 +6,8 @@ namespace FluxEasy.Data.Migrations
 {
     public partial class CreateIdentitySchema : Migration
     {
+        //Esse código define uma migração no Entity Framework Core para criar o esquema de identidade do ASP.NET Core.
+        //Em resumo, ele configura tabelas no banco de dados que gerenciam usuários, papéis e autenticação.
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(

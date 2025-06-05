@@ -84,6 +84,7 @@ namespace FluxEasy.Areas.Identity.Pages.Account
             public bool RememberMe { get; set; }
         }
 
+        //Se o campo ErrorMessage não for nulo, adiciona uma mensagem de erro ao ModelState
         public async Task OnGetAsync(string returnUrl = null)
         {
             if (!string.IsNullOrEmpty(ErrorMessage))
@@ -101,31 +102,36 @@ namespace FluxEasy.Areas.Identity.Pages.Account
             ReturnUrl = returnUrl;
         }
 
+        //Esse código implementa a autenticação de usuários
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
-            returnUrl ??= Url.Content("~/");
+            returnUrl ??= Url.Content("~/");//Redirecionar para uma pagina principal 
 
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
 
             if (ModelState.IsValid)
             {
-                // This doesn't count login failures towards account lockout
-                // To enable password failures to trigger account lockout, set lockoutOnFailure: true
+
+                //Faz toda a verificação de autenticação do usuário
                 var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
+                //Se for bem sucedido 
                 {
                     _logger.LogInformation("User logged in.");
                     return LocalRedirect(returnUrl);
                 }
+                //se for precisar de autenticação de dois fatores vai levar para pagina de de autenticação de dois fatores
                 if (result.RequiresTwoFactor)
                 {
                     return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, RememberMe = Input.RememberMe });
                 }
+                //Se a conta estiver em bloqueada redireciona para a pagina de bloqueio 
                 if (result.IsLockedOut)
                 {
                     _logger.LogWarning("User account locked out.");
                     return RedirectToPage("./Lockout");
                 }
+                //Se a senha for invalida redireciona para a pagina de login
                 else
                 {
                     ModelState.AddModelError(string.Empty, "Senha Invalida.");
@@ -133,7 +139,7 @@ namespace FluxEasy.Areas.Identity.Pages.Account
                 }
             }
 
-            // If we got this far, something failed, redisplay form
+           
             return Page();
         }
     }

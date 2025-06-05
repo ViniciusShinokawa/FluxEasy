@@ -2,6 +2,8 @@
 {
     public class EstoquePVA
     {
+        //Define a Entidade ProdutoAcabado no ASP.NET Core
+        //Ele representa o produto final no sistema e seus atributos 
         public int Id { get; set; }
         public int IdProduto { get; set; }
         public string? Entrada { get; set; }

@@ -2,6 +2,8 @@
 
 namespace FluxEasy.Entities
 {
+    //Define a Entidade ProdutoAcabado no ASP.NET Core
+    //Ele representa o produto final no sistema e seus atributos 
     public class ProdutoAcabado
     {
         [Key]
